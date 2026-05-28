@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韓国語 第7章 ㅁ ｜ 読んで・打って</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --main:#71C276;
+    --main-soft:#E6F4EA;
+    --main-deep:#4DAF52;
+    --main-shadow:rgba(91,184,116,.3);
+    --purple:#8E7BC4;
+    --purple-soft:#EEE9F6;
+    --yellow:#F0C24A;
+    --cream:#F4FAF5;
+    --paper:#ffffff;
+    --ink:#2E2A26;
+    --ink-soft:#7A726A;
+    --line:#D6E8D8;
+    --ok:#3F9E5A;
+    --ng:#D14A2E;
+    --ng-soft:#FBE9E9;
+    --shadow:0 10px 30px rgba(60,100,70,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Zen Maru Gothic","Gowun Dodum",sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  /* ---------- レイアウト ---------- */
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px 110px;}
+
+  /* ---------- ヘッダー ---------- */
+  header.top{
+    text-align:center;padding:20px 0 6px;
+  }
+  .hero-banner{
+    background:linear-gradient(135deg,#71C276 0%,#4DAF52 100%);
+    border-radius:24px;padding:22px 20px 18px;color:#fff;
+    box-shadow:0 8px 24px var(--main-shadow);
+    position:relative;overflow:hidden;
+    margin-bottom:6px;
+  }
+  .hero-banner::after{
+    content:'';position:absolute;top:-40px;right:-30px;width:130px;height:130px;
+    background:rgba(255,255,255,.1);border-radius:50%;
+  }
+  .hero-chars{
+    display:flex;justify-content:center;gap:12px;margin-bottom:12px;position:relative;z-index:2;
+  }
+  .hero-ava{
+    width:56px;height:56px;border-radius:50%;border:3px solid #fff;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);background:#fff;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-ava img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero-ava-fb{font-family:"Gowun Dodum";font-weight:700;font-size:16px;color:var(--main);}
+  .chapchip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.25);color:#fff;
+    font-weight:700;font-size:13px;letter-spacing:.04em;
+    padding:5px 14px;border-radius:999px;margin-bottom:8px;
+  }
+  .chapchip .big{font-family:"Gowun Dodum";font-size:18px;line-height:1;}
+  .hero-banner h1{
+    font-family:"Jua",sans-serif;font-weight:400;
+    font-size:clamp(22px,6.5vw,30px);letter-spacing:.02em;position:relative;z-index:2;
+  }
+  .hero-banner p{font-size:13px;opacity:.92;margin-top:4px;position:relative;z-index:2;}
+
+  /* ---------- タブ ---------- */
+  nav.tabs{
+    position:fixed;left:0;right:0;bottom:0;z-index:30;
+    background:rgba(255,255,255,.88);backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);
+    display:flex;justify-content:center;gap:4px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  }
+  nav.tabs button{
+    flex:1;max-width:120px;border:none;background:none;cursor:pointer;
+    font-family:inherit;color:var(--ink-soft);
+    display:flex;flex-direction:column;align-items:center;gap:3px;
+    padding:7px 4px 5px;border-radius:14px;font-size:11.5px;font-weight:700;
+    transition:.2s;
+  }
+  nav.tabs button .ic{font-size:21px;line-height:1;}
+  nav.tabs button[data-active="true"]{color:var(--main-deep);background:var(--main-soft);}
+  nav.tabs button#t-grammar[data-active="true"]{color:var(--purple);background:var(--purple-soft);}
+
+  /* ---------- セクション共通 ---------- */
+  .view{display:none;animation:rise .45s ease both;}
+  .view[data-active="true"]{display:block;}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .secttl{display:flex;align-items:center;gap:10px;margin:22px 2px 14px;}
+  .secttl .dot{width:11px;height:11px;border-radius:50%;}
+  .secttl h2{font-family:"Jua";font-weight:400;font-size:20px;}
+  .secttl small{color:var(--ink-soft);font-size:12px;font-weight:700;font-family:"Zen Maru Gothic";}
+
+  /* ---------- 読む：サブタブ ---------- */
+  .subtabs{display:flex;gap:8px;margin:0 0 6px;}
+  .subtabs button{
+    flex:1;border:1.5px solid var(--line);background:var(--paper);cursor:pointer;
+    font-family:inherit;font-weight:700;font-size:13px;color:var(--ink-soft);
+    padding:10px 6px;border-radius:14px;transition:.18s;
+  }
+  .subtabs button[data-active="true"]{
+    background:var(--main);border-color:var(--main);color:#fff;box-shadow:0 6px 16px var(--main-shadow);
+  }
+  .panel{display:none;animation:rise .35s ease both;}
+  .panel[data-active="true"]{display:block;}
+
+  /* ---------- フラッシュカード ---------- */
+  .deckhead{display:flex;justify-content:space-between;align-items:center;margin:14px 2px 10px;font-size:13px;color:var(--ink-soft);font-weight:700;}
+  .progress{height:6px;background:var(--main-soft);border-radius:99px;overflow:hidden;margin:0 2px 16px;}
+  .progress i{display:block;height:100%;background:var(--main);border-radius:99px;transition:width .35s;}
+  .card-stage{perspective:1200px;}
+  .flashcard{
+    position:relative;width:100%;height:340px;cursor:pointer;
+    transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,.2,.2,1);
+  }
+  .flashcard.flip{transform:rotateY(180deg);}
+  .face{
+    position:absolute;inset:0;border-radius:26px;background:var(--paper);
+    box-shadow:var(--shadow);border:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    backface-visibility:hidden;padding:20px;
+  }
+  .face.front{border-top:6px solid var(--main);}
+  .face .word{font-family:"Gowun Dodum";font-size:72px;letter-spacing:.04em;}
+  .face .tap-hint{position:absolute;bottom:18px;font-size:12px;color:var(--ink-soft);}
+  .face.back{transform:rotateY(180deg);background:var(--main-soft);border-top:6px solid var(--main-deep);}
+  .face.back .reading{font-size:30px;font-weight:700;color:var(--main-deep);}
+  .face.back .meaning{font-size:18px;margin-top:8px;color:var(--ink);}
+  .face.back .miniword{font-family:"Gowun Dodum";font-size:34px;color:var(--ink);margin-bottom:6px;}
+  .mark-mark{position:absolute;top:18px;right:20px;font-family:"Gowun Dodum";font-size:26px;color:var(--main);opacity:.5;}
+  .deck-nav{display:flex;gap:10px;margin-top:16px;}
+  .deck-nav button{
+    flex:1;border:none;background:var(--paper);border:1.5px solid var(--line);
+    padding:14px;border-radius:16px;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;color:var(--ink);transition:.15s;
+  }
+  .deck-nav button:active{transform:scale(.97);}
+  .deck-nav .prim{background:var(--main);color:#fff;border-color:var(--main);}
+
+  /* ---------- 文字グリッド ---------- */
+  .charinfo{color:var(--ink-soft);font-size:13px;margin:4px 2px 14px;}
+  .chargrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .cell{
+    aspect-ratio:1;border-radius:18px;background:var(--paper);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;
+    font-family:"Gowun Dodum";font-size:34px;transition:.18s;overflow:hidden;
+  }
+  .cell:active{transform:scale(.95);}
+  .cell .rd{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:var(--main);color:#fff;font-family:"Zen Maru Gothic";font-size:18px;font-weight:700;
+    opacity:0;transition:.18s;
+  }
+  .cell.show .rd{opacity:1;}
+
+  /* ---------- チャレンジ（選択） ---------- */
+  .qcard{background:var(--paper);border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px;}
+  .qcard .qttl{font-weight:700;font-size:15px;margin-bottom:4px;}
+  .qcard .qsub{font-size:12.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    font-family:"Gowun Dodum";font-size:24px;padding:12px 18px;border-radius:16px;
+    border:2px solid var(--line);background:#fff;cursor:pointer;transition:.15s;user-select:none;
+  }
+  .chip small{display:block;font-family:"Zen Maru Gothic";font-size:11px;color:var(--ink-soft);font-weight:700;margin-top:2px;}
+  .chip[data-sel="true"]{border-color:var(--main);background:var(--main-soft);}
+  .chip.correct{border-color:var(--ok);background:#E7F5EB;}
+  .chip.wrong{border-color:#D86A6A;background:#FBE9E9;opacity:.8;}
+  .two{display:flex;gap:12px;}
+  .two .chip{flex:1;text-align:center;}
+  .btn{
+    width:100%;border:none;background:var(--main);color:#fff;font-family:inherit;font-weight:700;
+    font-size:15px;padding:15px;border-radius:16px;cursor:pointer;margin-top:18px;transition:.15s;box-shadow:0 6px 16px var(--main-shadow);
+  }
+  .btn:active{transform:scale(.98);}
+
+  /* ---------- フィードバック（キャラ） ---------- */
+  .feedback{display:flex;align-items:center;gap:13px;border-radius:16px;padding:13px 15px;margin-top:14px;animation:rise .3s ease both;}
+  .feedback.ok{background:var(--main-soft);border:1.5px solid var(--main);}
+  .feedback.ng{background:var(--ng-soft);border:1.5px solid var(--ng);}
+  .feedback .txt{font-weight:700;font-size:13.5px;line-height:1.5;}
+  .feedback .txt b{font-family:"Gowun Dodum";}
+  .avatar{width:50px;height:50px;border-radius:50%;flex:none;position:relative;overflow:hidden;border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.12);}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ava-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:"Gowun Dodum";font-weight:700;color:#fff;font-size:16px;}
+  .aya .ava-fallback{background:var(--main);}
+  .wook .ava-fallback{background:#5A8FBF;}
+
+  /* ---------- 打つ ---------- */
+  .typehead{display:flex;gap:8px;margin-bottom:14px;}
+  .typehead button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:9px;font-family:inherit;font-weight:700;font-size:13px;color:var(--ink-soft);cursor:pointer;}
+  .typehead button[data-active="true"]{background:var(--main);color:#fff;border-color:var(--main);}
+  .typecard{background:var(--paper);border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow);padding:22px 20px;}
+  .speaker{font-size:12px;color:var(--ink-soft);font-weight:700;margin-bottom:8px;}
+  .target{font-family:"Gowun Dodum";font-size:30px;line-height:1.45;letter-spacing:.03em;word-break:keep-all;margin-bottom:6px;}
+  .target span{transition:.1s;}
+  .target span.ok{color:var(--ok);}
+  .target span.bad{color:var(--ng);text-decoration:underline wavy var(--ng);}
+  .target span.pending{color:#C7BEB3;}
+  .tip{font-size:11.5px;color:var(--ink-soft);margin-bottom:16px;}
+  .typebox{width:100%;font-family:"Gowun Dodum";font-size:22px;padding:14px 16px;border:2px solid var(--line);border-radius:14px;outline:none;transition:.15s;}
+  .typebox:focus{border-color:var(--main);}
+  .typebox.done{border-color:var(--ok);background:#F2FBF4;}
+  .kbnote{font-size:11.5px;color:var(--ink-soft);background:var(--main-soft);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:14px;}
+
+  /* ---------- 物語 ---------- */
+  .storyhead{background:linear-gradient(135deg,#71C276,#4DAF52);border-radius:22px;padding:18px 18px 16px;color:#fff;margin-bottom:8px;box-shadow:0 8px 22px var(--main-shadow);}
+  .storyhead h3{font-family:"Jua";font-weight:400;font-size:20px;}
+  .storyhead p{font-size:12.5px;opacity:.95;margin-top:4px;line-height:1.5;}
+  .chat{display:flex;flex-direction:column;gap:14px;padding:4px 2px;}
+  .row{display:flex;gap:10px;max-width:90%;}
+  .row.right{flex-direction:row-reverse;align-self:flex-end;}
+  .bub{background:#fff;border:1px solid var(--line);border-radius:18px;padding:11px 15px;box-shadow:0 2px 6px rgba(0,0,0,.04);cursor:pointer;}
+  .row.right .bub{background:var(--main-soft);}
+  .bub .ko{font-family:"Gowun Dodum";font-size:18px;}
+  .bub .jp{font-size:12px;color:var(--ink-soft);margin-top:5px;display:none;}
+  .bub.open .jp{display:block;}
+  .row .avatar{width:42px;height:42px;}
+  .storytip{text-align:center;font-size:11.5px;color:var(--ink-soft);margin:14px 0 0;}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:11px;margin-top:34px;line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ★ ヘッダー：緑バナー＋アヤ・ウク常駐 ★ -->
+  <header class="top">
+    <div class="hero-banner">
+      <div class="hero-chars">
+        <span class="hero-ava">
+          <img src="data:image/png;base64,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" alt="아야">
+        </span>
+        <span class="hero-ava">
+          <img src="data:image/png;base64,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" alt="욱">
+        </span>
+      </div>
+      <span class="chapchip"><span class="big">ㅁ</span>第7章 ・ マ行</span>
+      <h1>読んで、打って。</h1>
+      <p>「餃子と冷麺」— アヤとウクの食堂デート</p>
+    </div>
+  </header>
+
+  <!-- ===================== 読む ===================== -->
+  <section class="view" id="v-read" data-active="true">
+    <div class="secttl"><span class="dot" style="background:var(--main)"></span><h2>👀 読んでみよう</h2><small>ㅁを使って</small></div>
+
+    <div class="subtabs">
+      <button data-p="words" data-active="true">単語カード</button>
+      <button data-p="chars">文字よみ</button>
+      <button data-p="quiz">チャレンジ</button>
+    </div>
+
+    <!-- 単語カード -->
+    <div class="panel" data-panel="words" data-active="true">
+      <div class="deckhead"><span id="deck-count">1 / 9</span><span>タップでめくる</span></div>
+      <div class="progress"><i id="deck-bar" style="width:11%"></i></div>
+      <div class="card-stage">
+        <div class="flashcard" id="flashcard" onclick="this.classList.toggle('flip')">
+          <div class="face front">
+            <span class="mark-mark">ㅁ</span>
+            <span class="word" id="fc-word">마음</span>
+            <span class="tap-hint">読めたらタップ ＞ 答え合わせ</span>
+          </div>
+          <div class="face back">
+            <span class="miniword" id="fc-mini">마음</span>
+            <span class="reading" id="fc-read">マウム</span>
+            <span class="meaning" id="fc-mean">心</span>
+          </div>
+        </div>
+      </div>
+      <div class="deck-nav">
+        <button onclick="deckMove(-1)">← 前</button>
+        <button class="prim" onclick="deckMove(1)">次へ →</button>
+      </div>
+    </div>
+
+    <!-- 文字よみ -->
+    <div class="panel" data-panel="chars">
+      <p class="charinfo">ㅁを使った文字。縦・横・斜めに読んでみよう。タップで読みが出ます。</p>
+      <div class="chargrid" id="chargrid"></div>
+    </div>
+
+    <!-- チャレンジ -->
+    <div class="panel" data-panel="quiz">
+      <div class="qcard">
+        <div class="qttl">① ㅁパッチムがある単語を全部選ぼう</div>
+        <div class="qsub">下の単語の中から、終声（パッチム）に ㅁ がある語だけをタップ。</div>
+        <div class="chips" id="q1-chips"></div>
+        <button class="btn" onclick="checkQ1()">答え合わせ</button>
+        <div id="q1-fb"></div>
+      </div>
+
+      <div class="qcard">
+        <div class="qttl">② 正しいのはどっち？</div>
+        <div class="qsub">日本語に合う正しいハングルを選ぼう。</div>
+        <div style="font-size:13px;font-weight:700;margin:6px 0 8px;">漫画</div>
+        <div class="two" data-q="q2a">
+          <div class="chip" data-v="나무" onclick="pick2(this)">나무</div>
+          <div class="chip" data-v="만화" onclick="pick2(this)">만화</div>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin:16px 0 8px;">音楽</div>
+        <div class="two" data-q="q2b">
+          <div class="chip" data-v="음악" onclick="pick2(this)">음악</div>
+          <div class="chip" data-v="마음" onclick="pick2(this)">마음</div>
+        </div>
+        <button class="btn" onclick="checkQ2()">答え合わせ</button>
+        <div id="q2-fb"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 打つ ===================== -->
+  <section class="view" id="v-type">
+    <div class="secttl"><span class="dot" style="background:var(--main)"></span><h2>⌨️ 打ってみよう</h2><small>ㅁの単語を入力</small></div>
+
+    <div class="typecard">
+      <div class="deckhead" style="margin:0 0 10px"><span id="ty-count">1 / 9</span><span id="ty-hint" class="speaker" style="margin:0"></span></div>
+      <div class="target" id="ty-target"></div>
+      <div class="tip">スペース（分かち書き）や「?」「.」「~」も正確に。</div>
+      <input class="typebox" id="ty-input" placeholder="ここに打ってみよう" autocomplete="off" autocapitalize="off" spellcheck="false">
+      <div id="ty-fb"></div>
+      <div class="kbnote">💡 端末の「韓国語キーボード」をオンにしてね。合っている文字は<b style="color:var(--ok)">緑</b>、違う文字は<b style="color:var(--ng)">赤い波線</b>でリアルタイム表示。習った ㅁ の単語を打ってみよう！</div>
+      <div class="deck-nav">
+        <button onclick="tyMove(-1)">← 前</button>
+        <button class="prim" onclick="tyMove(1)">次へ →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 文法 ===================== -->
+  <section class="view" id="v-grammar">
+    <div class="secttl"><span class="dot" style="background:var(--purple)"></span><h2 style="color:var(--purple)">📝 3択で文法おさらい</h2><small>아요 / 어요</small></div>
+    <div class="qcard" style="border-top:5px solid var(--purple)">
+      <p style="font-size:13px;color:var(--ink-soft);margin-bottom:16px;">丁寧形「〜します・です」。다の直前の母音が <b>ㅏㅗㅑ</b> なら <b>아요</b>、それ以外なら <b>어요</b>。</p>
+      <div id="grammar-qs"></div>
+      <button class="btn" style="background:var(--purple);box-shadow:0 6px 16px rgba(142,123,196,.3)" onclick="checkGrammar()">答え合わせ</button>
+      <div id="g-fb"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 本文 ===================== -->
+  <section class="view" id="v-story">
+    <div class="storyhead">
+      <h3>餃子と冷麺</h3>
+      <p>思い切って仕事を辞め、韓国留学を果たしたアヤ。ウクと大学近くの食堂で遭遇し…。</p>
+      <p style="font-size:11.5px;opacity:.85;margin-top:6px">🔊 吹き出しタップ → 韓国語で読み上げ＆日本語訳</p>
+    </div>
+    <div class="chat" id="chat"></div>
+    <p class="storytip">※ ここは文法の暗記ではなく「生の会話の空気」に触れる場所です。読み上げを聞いて、音とリズムに慣れましょう。</p>
+  </section>
+
+  <footer>
+    韓国語学習アプリ ｜ 第7章 ㅁ<br>
+    書籍の付録アプリ ｜ アヤ＆ウクと一緒に学ぼう
+  </footer>
+</div>
+
+<!-- ===================== タブ ===================== -->
+<nav class="tabs">
+  <button id="t-read" data-active="true" onclick="show('read')"><span class="ic">👀</span>読む</button>
+  <button id="t-type" onclick="show('type')"><span class="ic">⌨️</span>打つ</button>
+  <button id="t-grammar" onclick="show('grammar')"><span class="ic">📝</span>文法</button>
+  <button id="t-story" onclick="show('story')"><span class="ic">📖</span>本文</button>
+</nav>
+
+<script>
+/* ---------- データ（第7章 ㅁ） ---------- */
+const WORDS = [
+  {ko:"마음", rd:"マウム",   jp:"心",  patchimM:true },
+  {ko:"냉면", rd:"ネンミョン", jp:"冷麺", patchimM:false },
+  {ko:"감기", rd:"カムギ",   jp:"風邪", patchimM:true },
+  {ko:"나무", rd:"ナム",     jp:"木",  patchimM:false },
+  {ko:"음악", rd:"ウマク",   jp:"音楽", patchimM:true },
+  {ko:"만화", rd:"マヌァ",   jp:"漫画", patchimM:false },
+  {ko:"어머니", rd:"オモニ",  jp:"母",  patchimM:false },
+  {ko:"이모", rd:"イモ",     jp:"叔母", patchimM:false },
+  {ko:"엄마", rd:"オンマ",   jp:"ママ", patchimM:true },
+];
+const CHARS = [
+  {ko:"뮤",rd:"ミュ"},{ko:"몬",rd:"モン"},{ko:"미",rd:"ミ"},{ko:"모",rd:"モ"},
+  {ko:"맨",rd:"メン"},{ko:"엠",rd:"エム"},{ko:"남",rd:"ナム"},{ko:"마",rd:"マ"},
+  {ko:"몽",rd:"モン"},{ko:"민",rd:"ミン"},{ko:"검",rd:"コム"},{ko:"무",rd:"ム"},
+];
+const DIALOGUE = [
+  {spk:"아야", ko:"그거 뭐야?",                       jp:"それ何？", note:"友達に気さくに尋ねる定番フレーズ。"},
+  {spk:"욱",   ko:"만두 먹어요.",                      jp:"餃子食べています。", note:"요で終わる、少し丁寧な話し方。"},
+  {spk:"욱",   ko:"여기 빈 자리 있어요. 앉아요.",      jp:"ここ席空いてますよ。座ってください。", note:"있어요（あります）＋앉아요（座ってください）。"},
+  {spk:"아야", ko:"맛있어?",                           jp:"美味しい？", note:"요を付けない「ため口（パンマル）」。"},
+  {spk:"욱",   ko:"너무 맛있어요. 아야씨도 뭐 시켜요.", jp:"すごく美味しいです。アヤさんも何か頼んでください。", note:"너무（すごく）は日常会話で頻出。"},
+  {spk:"아야", ko:"음~ 기다려, 냉면은 얼마야?",        jp:"う〜ん、待って。冷麺はいくら？", note:"얼마야?（いくら？）は買い物でも必須。"},
+  {spk:"욱",   ko:"만 원이에요.",                       jp:"1万ウォンですよ。", note:"만（万）＋원（ウォン）。"},
+];
+const TYPE_WORDS = [
+  {ko:"마음", jp:"心",    hint:"マウム"},
+  {ko:"냉면", jp:"冷麺",  hint:"ネンミョン"},
+  {ko:"감기", jp:"風邪",  hint:"カムギ"},
+  {ko:"나무", jp:"木",    hint:"ナム"},
+  {ko:"음악", jp:"音楽",  hint:"ウマク"},
+  {ko:"만화", jp:"漫画",  hint:"マヌァ"},
+  {ko:"어머니", jp:"母",  hint:"オモニ"},
+  {ko:"이모", jp:"叔母",  hint:"イモ"},
+  {ko:"엄마", jp:"ママ",  hint:"オンマ"},
+];
+const GRAMMAR = [
+  {q:"残ります（남다）", opts:["남아요","넘어요","남어요"], a:0, why:"남 は母音が ㅏ（陽母音）なので 아요。"},
+  {q:"越えます（넘다）", opts:["남아요","넘어요","넘아요"], a:1, why:"넘 は母音が ㅓ（陰母音）なので 어요。"},
+  {q:"多いです（많다）", opts:["많아요","많어요","만아요"], a:0, why:"많 は母音が ㅏ（陽母音）なので 아요。"},
+];
+
+/* ---------- キャラ ---------- */
+const AYA_IMG="data:image/png;base64,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";
+const WOOK_IMG="data:image/png;base64,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";
+function avatar(who){
+  const cls=who==='aya'?'aya':'wook';
+  const src=who==='aya'?AYA_IMG:WOOK_IMG;
+  return `<span class="avatar ${cls}"><img src="${src}" alt=""></span>`;
+}
+function feedback(ok,msg){
+  const who = ok ? 'aya' : 'wook';
+  return `<div class="feedback ${ok?'ok':'ng'}">${avatar(who)}<div class="txt">${msg}</div></div>`;
+}
+
+/* ---------- タブ切替 ---------- */
+function show(name){
+  document.querySelectorAll('.view').forEach(v=>v.dataset.active=(v.id==='v-'+name));
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.dataset.active=(b.id==='t-'+name));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.subtabs button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.subtabs button').forEach(x=>x.dataset.active=(x===b));
+    document.querySelectorAll('.panel').forEach(p=>p.dataset.active=(p.dataset.panel===b.dataset.p));
+  };
+});
+
+/* ---------- フラッシュカード ---------- */
+let deckI=0;
+function renderCard(){
+  const w=WORDS[deckI], fc=document.getElementById('flashcard');
+  fc.classList.remove('flip');
+  document.getElementById('fc-word').textContent=w.ko;
+  document.getElementById('fc-mini').textContent=w.ko;
+  document.getElementById('fc-read').textContent=w.rd;
+  document.getElementById('fc-mean').textContent=w.jp;
+  document.getElementById('deck-count').textContent=(deckI+1)+' / '+WORDS.length;
+  document.getElementById('deck-bar').style.width=((deckI+1)/WORDS.length*100)+'%';
+}
+function deckMove(d){
+  deckI=(deckI+d+WORDS.length)%WORDS.length;
+  renderCard();
+}
+
+/* ---------- 文字グリッド ---------- */
+function renderChars(){
+  document.getElementById('chargrid').innerHTML=CHARS.map(c=>`<div class="cell" onclick="this.classList.toggle('show')">${c.ko}<span class="rd">${c.rd}</span></div>`).join('');
+}
+
+/* ---------- チャレンジ Q1 ---------- */
+function renderQ1(){
+  document.getElementById('q1-chips').innerHTML=WORDS.map((w,i)=>`<div class="chip" data-i="${i}" onclick="this.dataset.sel=(this.dataset.sel!=='true')">${w.ko}<small>${w.jp}</small></div>`).join('');
+}
+function checkQ1(){
+  let allRight=true;
+  document.querySelectorAll('#q1-chips .chip').forEach(c=>{
+    const w=WORDS[+c.dataset.i], sel=c.dataset.sel==='true';
+    c.classList.remove('correct','wrong');
+    if(w.patchimM){ c.classList.add('correct'); if(!sel) allRight=false; }
+    else if(sel){ c.classList.add('wrong'); allRight=false; }
+  });
+  document.getElementById('q1-fb').innerHTML = allRight
+    ? feedback(true,'正解！ ㅁパッチムは <b>마음・감기・음악・엄마</b> の4つ。')
+    : feedback(false,'おしい。緑が正解の語、赤は選びすぎ。正解は <b>마음・감기・음악・엄마</b>。');
+}
+
+/* ---------- チャレンジ Q2 ---------- */
+const Q2_ANS={q2a:"만화", q2b:"음악"};
+function pick2(el){
+  const grp=el.closest('.two');
+  grp.querySelectorAll('.chip').forEach(c=>c.dataset.sel='false');
+  el.dataset.sel='true';
+}
+function checkQ2(){
+  let right=0;
+  for(const q in Q2_ANS){
+    const grp=document.querySelector(`.two[data-q="${q}"]`);
+    grp.querySelectorAll('.chip').forEach(c=>{
+      c.classList.remove('correct','wrong');
+      if(c.dataset.v===Q2_ANS[q]) c.classList.add('correct');
+      else if(c.dataset.sel==='true') c.classList.add('wrong');
+    });
+    const sel=grp.querySelector('.chip[data-sel="true"]');
+    if(sel && sel.dataset.v===Q2_ANS[q]) right++;
+  }
+  document.getElementById('q2-fb').innerHTML = right===2
+    ? feedback(true,'2問とも正解！ 漫画＝<b>만화</b>、音楽＝<b>음악</b>。')
+    : feedback(false,`${right}/2問。正解は 漫画＝<b>만화</b>、音楽＝<b>음악</b>。`);
+}
+
+/* ---------- 打つ（単語のみ） ---------- */
+let tyI=0;
+function renderType(){
+  const item=TYPE_WORDS[tyI];
+  document.getElementById('ty-count').textContent=(tyI+1)+' / '+TYPE_WORDS.length;
+  document.getElementById('ty-hint').textContent=item.jp+'（'+item.hint+'）';
+  const inp=document.getElementById('ty-input');
+  inp.value=''; inp.classList.remove('done');
+  document.getElementById('ty-fb').innerHTML='';
+  drawDiff('');
+}
+function drawDiff(val){
+  const target=TYPE_WORDS[tyI].ko;
+  const t=[...target.normalize('NFC')];
+  const u=[...val.normalize('NFC')];
+  const h=t.map((ch,i)=>{
+    let cls='pending';
+    if(i<u.length) cls=(u[i]===ch)?'ok':'bad';
+    return `<span class="${cls}">${ch}</span>`;
+  }).join('');
+  document.getElementById('ty-target').innerHTML=h;
+}
+document.getElementById('ty-input').addEventListener('input',e=>{
+  const val=e.target.value;
+  drawDiff(val);
+  const target=TYPE_WORDS[tyI].ko;
+  if(val.normalize('NFC')===target.normalize('NFC')){
+    e.target.classList.add('done');
+    const item=TYPE_WORDS[tyI];
+    speakKo(item.ko);
+    document.getElementById('ty-fb').innerHTML=feedback(true,
+      `✨ パーフェクト！ <b>${item.ko}</b>（${item.jp}）`);
+  }else{
+    e.target.classList.remove('done');
+    document.getElementById('ty-fb').innerHTML='';
+  }
+});
+function tyMove(d){
+  tyI=(tyI+d+TYPE_WORDS.length)%TYPE_WORDS.length;
+  renderType();
+}
+
+/* ---------- 文法 ---------- */
+function renderGrammar(){
+  document.getElementById('grammar-qs').innerHTML=GRAMMAR.map((g,gi)=>`
+    <div style="margin-bottom:18px;">
+      <div style="font-weight:700;font-size:14px;margin-bottom:8px;">${gi+1}. 「${g.q}」の正しい形は？</div>
+      <div class="chips" data-g="${gi}">
+        ${g.opts.map((o,oi)=>`<div class="chip" data-o="${oi}" onclick="pickG(this)">${o}</div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function pickG(el){
+  const grp=el.closest('.chips');
+  grp.querySelectorAll('.chip').forEach(c=>c.dataset.sel='false');
+  el.dataset.sel='true';
+}
+function checkGrammar(){
+  let right=0;
+  GRAMMAR.forEach((g,gi)=>{
+    const grp=document.querySelector(`.chips[data-g="${gi}"]`);
+    grp.querySelectorAll('.chip').forEach(c=>{
+      c.classList.remove('correct','wrong');
+      if(+c.dataset.o===g.a) c.classList.add('correct');
+      else if(c.dataset.sel==='true') c.classList.add('wrong');
+    });
+    const sel=grp.querySelector('.chip[data-sel="true"]');
+    if(sel && +sel.dataset.o===g.a) right++;
+  });
+  const ok=right===GRAMMAR.length;
+  const why=GRAMMAR.map((g,i)=>`${i+1}. ${g.opts[g.a]}（${g.why}）`).join('<br>');
+  document.getElementById('g-fb').innerHTML=feedback(ok,
+    `${ok?'全問正解！':right+'/3問。'}<br><span style="font-weight:400;font-size:12.5px;color:var(--ink)">${why}</span>`);
+}
+
+/* ---------- TTS（無料・ブラウザ標準） ---------- */
+function speakKo(text){
+  if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='ko-KR'; u.rate=0.85;
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------- 本文 ---------- */
+function renderChat(){
+  document.getElementById('chat').innerHTML=DIALOGUE.map((d,i)=>{
+    const who=d.spk==='아야'?'aya':'wook';
+    const side=who==='aya'?'right':'left';
+    return `<div class="row ${side}">${avatar(who)}<div class="bub" onclick="speakKo('${d.ko.replace(/'/g,"\\'")}');this.classList.add('open')">
+      <div class="ko"><span style="opacity:.5;font-size:13px;margin-right:4px">🔊</span>${d.ko}</div><div class="jp">${d.jp}</div></div></div>`;
+  }).join('');
+}
+
+/* ---------- 初期化 ---------- */
+renderCard(); renderChars(); renderQ1(); renderType(); renderGrammar(); renderChat();
+</script>
+</body>
+</html>
